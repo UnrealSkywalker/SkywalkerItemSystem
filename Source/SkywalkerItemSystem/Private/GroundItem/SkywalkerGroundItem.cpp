@@ -9,14 +9,21 @@ ASkywalkerGroundItem::ASkywalkerGroundItem()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
-// Called when the game starts or when spawned
-void ASkywalkerGroundItem::BeginPlay()
+bool ASkywalkerGroundItem::OnCreate(FName InItemConfigID, int32 InCount)
 {
-	Super::BeginPlay();
+	ConfigID = InItemConfigID;
+	Count = InCount;
+
+	Create();
+
+	return true;
 }
 
-// Called every frame
-void ASkywalkerGroundItem::Tick(float DeltaTime)
+void ASkywalkerGroundItem::Create_Implementation()
 {
-	Super::Tick(DeltaTime);
+}
+
+const FName &ASkywalkerGroundItem::GetConfigID() const
+{
+	return ConfigID;
 }

@@ -15,11 +15,29 @@ public:
 	// Sets default values for this actor's properties
 	ASkywalkerGroundItem();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	bool OnCreate(FName InItemConfigID, int32 InCount);
 
-public:
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	/**
+	 * 创建
+	 */
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Skywalker|GroundItem")
+	void Create();
+
+	/**
+	 * 获取道具配置ID
+	 * @return 道具配置ID
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Skywalker|GroundItem")
+	const FName &GetConfigID() const;
+
+private:
+	/**
+	 * 道具配置ID
+	 */
+	FName ConfigID;
+
+	/**
+	 * 道具数量
+	 */
+	int32 Count;
 };

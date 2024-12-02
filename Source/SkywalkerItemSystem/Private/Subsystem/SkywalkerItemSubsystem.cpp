@@ -14,3 +14,16 @@ USkywalkerItem *USkywalkerItemSubsystem::CreateItem(TSubclassOf<USkywalkerItem> 
 
     return Item;
 }
+
+ASkywalkerGroundItem *USkywalkerItemSubsystem::CreateGroundItem(TSubclassOf<ASkywalkerGroundItem> GroundItemClass, const FTransform &Transform, FName ConfigID, int32 Count)
+{
+    ASkywalkerGroundItem *GroundItem = GetWorld()->SpawnActor<ASkywalkerGroundItem>(GroundItemClass, Transform);
+    if (GroundItem == nullptr)
+    {
+        return nullptr;
+    }
+
+    GroundItem->OnCreate(ConfigID, Count);
+
+    return GroundItem;
+}
